@@ -1,6 +1,6 @@
-# core-ui
+# Riser
 
-> Open Source Admin Template
+> template based in (core-ui)[https://coreui.io/]
 
 ## Build Setup
 
