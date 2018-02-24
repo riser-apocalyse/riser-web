@@ -1,6 +1,6 @@
 # Riser
 
-> template based in (core-ui)[https://coreui.io/]
+> template based in [core-ui](https://coreui.io/)
 
 ## Build Setup
 
