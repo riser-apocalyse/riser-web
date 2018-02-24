@@ -22,7 +22,9 @@ let router = new Router({
       redirect: '/login',
       name: 'Login',
       component: {
-        render(c) { // eslint-disable-line
+        // eslint-disable-line
+        render(c) {
+          // eslint-disable-line
           return c('router-view')
         }
       },
@@ -54,6 +56,7 @@ let router = new Router({
         requiresAuth: true
       }
     }
+    /* { path: '*', component: PageNotFound } */
   ]
 })
 
