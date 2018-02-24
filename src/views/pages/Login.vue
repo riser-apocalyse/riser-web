@@ -54,13 +54,15 @@
 <script>
 
 import firebase from 'firebase'
+console.log('a', process.env.NODE_ENV);
+import { loginForm } from "../../config";
 
 export default {
   name: 'Login',
   data: function () {
     return {
-      username: '',
-      password: ''
+      username: loginForm ? loginForm.email : '',
+      password: loginForm ? loginForm.password : ''
     }
   },
   methods: {
