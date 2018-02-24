@@ -3,13 +3,13 @@ import Router from 'vue-router'
 import firebase from 'firebase'
 
 // Containers
-import Full from '@/containers/Full'
+import Candidate from '@/containers/Candidate'
 
 // Views
 import Login from '@/views/pages/Login'
 import PageNotFound from '@/views/pages/PageNotFound'
 import Register from '@/views/pages/Register'
-import Dashboard from '@/views/Dashboard'
+import CandidateDashboard from '@/views/candidate/CandidateDashboard'
 
 Vue.use(Router)
 
@@ -32,25 +32,23 @@ let router = new Router({
       children: [
         {
           path: 'login',
-          name: 'Login',
           component: Login
         },
         {
           path: 'register',
-          name: 'Register',
           component: Register
         }
       ]
     },
     {
-      path: '/dashboard',
-      name: 'Home',
-      component: Full,
+      path: '/candidate',
+      name: 'Candidate',
+      component: Candidate,
       children: [
         {
           path: 'dashboard',
           name: 'Dashboard',
-          component: Dashboard
+          component: CandidateDashboard
         }
       ],
       meta: {
