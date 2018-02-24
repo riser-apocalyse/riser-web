@@ -7,6 +7,7 @@ import Full from '@/containers/Full'
 
 // Views
 import Login from '@/views/pages/Login'
+import PageNotFound from '@/views/pages/PageNotFound'
 import Register from '@/views/pages/Register'
 import Dashboard from '@/views/Dashboard'
 
@@ -55,8 +56,8 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
-    /* { path: '*', component: PageNotFound } */
+    },
+    { path: '*', component: PageNotFound }
   ]
 })
 
