@@ -1,11 +1,13 @@
 <template>
-  <div class="animated fadeIn">
-    <p class="text-info">Content</p>
-  </div>
+  <div>holaa!!!!</div>
 </template>
 
 <script>
+import { ListTimesheets } from '../../components/timesheets';
+
 export default {
   name: 'dashboard'
 }
 </script>
+
+
