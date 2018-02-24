@@ -6,9 +6,9 @@ import firebase from 'firebase'
 import Candidate from '@/containers/Candidate'
 
 // Views
-import Login from '@/views/pages/Login'
-import PageNotFound from '@/views/pages/PageNotFound'
-import Register from '@/views/pages/Register'
+import Login from '@/views/common/Login'
+import PageNotFound from '@/views/common/PageNotFound'
+import Register from '@/views/common/Register'
 import CandidateDashboard from '@/views/candidate/CandidateDashboard'
 
 Vue.use(Router)
