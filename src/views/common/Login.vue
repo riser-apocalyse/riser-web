@@ -54,7 +54,6 @@
 <script>
 
 import firebase from 'firebase'
-console.log('a', process.env.NODE_ENV);
 import { loginForm } from "../../config";
 
 export default {

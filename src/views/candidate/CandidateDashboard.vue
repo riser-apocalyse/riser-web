@@ -1,12 +1,15 @@
 <template>
-  <div>holaa!!!!</div>
+  <ListTimeSheets />
 </template>
 
 <script>
-import { ListTimesheets } from '../../components/timesheets';
+import { ListTimeSheets } from '../../components/timesheets';
 
 export default {
-  name: 'dashboard'
+  name: 'dashboard',
+  components: {
+    ListTimeSheets
+  }
 }
 </script>
 

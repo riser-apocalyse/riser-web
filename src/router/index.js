@@ -19,26 +19,12 @@ let router = new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
-      path: '/',
-      redirect: '/login',
-      name: 'Login',
-      component: {
-        // eslint-disable-line
-        render(c) {
-          // eslint-disable-line
-          return c('router-view')
-        }
-      },
-      children: [
-        {
-          path: 'login',
-          component: Login
-        },
-        {
-          path: 'register',
-          component: Register
-        }
-      ]
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/register',
+      component: Register
     },
     {
       path: '/candidate',
@@ -46,7 +32,7 @@ let router = new Router({
       component: Candidate,
       children: [
         {
-          path: 'dashboard',
+          path: '', // should have a path
           name: 'Dashboard',
           component: CandidateDashboard
         }
@@ -64,7 +50,7 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('dashboard')
+  else if (!requiresAuth && currentUser) next('candidate')
   else next()
 })
 
