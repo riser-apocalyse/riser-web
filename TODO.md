@@ -11,3 +11,10 @@ CandidateDashboard component is not loaded. Looks like a child route is not corr
 * Component is render
 * vuex is correcly installed
 * Component attach to state & actions
+
+# notes
+
+* development server?
+* development database?
+* deployment to production, how it works? who is serving the files?
+* Ticket for BE

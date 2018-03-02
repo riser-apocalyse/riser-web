@@ -7,17 +7,19 @@ import firebase from 'firebase'
 import App from './App'
 import router from './router'
 import config from './config'
+import store from './store'
 
 Vue.use(BootstrapVue)
 
 let app
 
 firebase.initializeApp(config)
-firebase.auth().onAuthStateChanged(function (user) {
+firebase.auth().onAuthStateChanged(function(user) {
   if (!app) {
     /* eslint-disable no-new */
     new Vue({
       el: '#app',
+      store,
       router,
       template: '<App/>',
       components: {
