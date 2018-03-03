@@ -1,3 +1,4 @@
 import ListTimeSheets from './ListTimeSheets.vue'
+import DetailsTimeSheet from './details/DetailsTimeSheet.vue'
 
-export { ListTimeSheets }
+export { ListTimeSheets, DetailsTimeSheet }

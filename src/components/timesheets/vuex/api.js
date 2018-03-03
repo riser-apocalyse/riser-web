@@ -23,6 +23,7 @@ export const fetchTimesheets = (user, token) => {
   return axios
     .get(`http://${SERVER_URL}/2/2/riserts.fcgi`, { user, token })
     .then(res => {
+      console.log('fetching timesheets...')
       let timesheets = res.data.timesheet
       Object.keys(timesheets).forEach(index => {
         timesheets[index].start = new Date(

@@ -1,20 +1,9 @@
-# task
+# Task
 
-implement ListTimesheet in Candidate component so whe /candidate/dashboard is called listTimeSheeet is renderd
+Implementing DetailsTimesheet.
 
-# problem
+_Unclear what has to be displayed_
 
-CandidateDashboard component is not loaded. Looks like a child route is not correctly configured
-
-# roadmap
-
-* Component is render
-* vuex is correcly installed
-* Component attach to state & actions
-
-# notes
-
-* development server?
-* development database?
-* deployment to production, how it works? who is serving the files?
-* Ticket for BE
+* Break down template in subcomponents
+  * DetailsTimeSheetSummary
+  * DetailsTimeSheetForm

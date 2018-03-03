@@ -41,7 +41,7 @@ let router = new Router({
           component: CandidateDashboard
         },
         {
-          path: 'timesheet',
+          path: 'timesheet/:id',
           name: 'candidate-timesheet',
           component: CandidateTimesheet
         }

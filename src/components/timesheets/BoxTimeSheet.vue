@@ -4,22 +4,18 @@
     <div class="card-block">
       <h4 class="card-title">XX days worked</h4>
       <p class="card-text">from {{ ts_start | moment }} to {{ ts_end | moment }}</p>
-      <router-link class="btn btn-primary" :to="{ path: '/candidate/timesheet',
-                       params: { timesheetId: 0 } }">Details</router-link>
+      <router-link class="btn btn-primary" :to="{ name: 'candidate-timesheet',
+                       params: { id: id } }">Details</router-link>
     </div>
   </div>
 </template>
 
 <script>
 
-import Datepicker from 'vuejs-datepicker'
 import { moment } from '../../filters'
 export default {
   name: 'box-timesheet',
-  props: ['status', 'ts_start', 'ts_end'],
-  components: {
-    Datepicker
-  },
+  props: ['status', 'ts_start', 'ts_end', "id"],
   filters: {
     moment
   },
@@ -35,6 +31,16 @@ export default {
     },
     isPayed () {
       return status[0] === 'P';
+    },
+    translateStatus (status) {
+        let statusMap = {
+          'X': 'pending',
+          'S': 'submitted',
+          'A': 'submitted',
+          'B': 'approved'
+        }
+        let tsStatus = status[0]
+        return statusMap[tsStatus]
     }
   }
 }
