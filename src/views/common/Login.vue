@@ -70,7 +70,7 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.username, this.password).then(
         (user) => {
           // select main dashboard depending role!
-          this.$router.replace('candidate')
+          this.$router.replace('candidate/dashboard')
         },
         (err) => {
           console.log('login error', err)

@@ -10,14 +10,18 @@ import Login from '@/views/common/Login'
 import PageNotFound from '@/views/common/PageNotFound'
 import Register from '@/views/common/Register'
 import CandidateDashboard from '@/views/candidate/CandidateDashboard'
+import CandidateTimesheet from '@/views/candidate/CandidateTimesheet'
 
 Vue.use(Router)
 
 let router = new Router({
-  mode: 'history',
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
+    {
+      path: '',
+      redirect: 'login'
+    },
     {
       path: '/login',
       component: Login
@@ -28,13 +32,18 @@ let router = new Router({
     },
     {
       path: '/candidate',
-      name: 'Candidate',
+      name: 'candidate',
       component: Candidate,
       children: [
         {
-          path: '', // should have a path
-          name: 'Dashboard',
+          path: 'dashboard',
+          name: 'candidate-dashboard',
           component: CandidateDashboard
+        },
+        {
+          path: 'timesheet',
+          name: 'candidate-timesheet',
+          component: CandidateTimesheet
         }
       ],
       meta: {
@@ -50,7 +59,7 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('candidate')
+  else if (!requiresAuth && currentUser) next('candidate/dashboard')
   else next()
 })
 

@@ -6,7 +6,7 @@
 import { ListTimeSheets } from '../../components/timesheets';
 
 export default {
-  name: 'dashboard',
+  name: 'candidate-dashboard',
   components: {
     ListTimeSheets
   }
