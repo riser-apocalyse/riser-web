@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Candidate Timesheet detail</h1>
+    <h1>Detail Timesheet</h1>
     <DetailsTimeSheet />
   </div>
 </template>
