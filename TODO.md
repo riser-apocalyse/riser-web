@@ -2,8 +2,9 @@
 
 Implementing DetailsTimesheet.
 
-_Unclear what has to be displayed_
+* How works Add row?
+* Timesheet by Month
 
-* Break down template in subcomponents
-  * DetailsTimeSheetSummary
-  * DetailsTimeSheetForm
+# Nice to have
+
+* Whole day?
