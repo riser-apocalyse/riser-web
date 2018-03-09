@@ -1,17 +1,30 @@
 <template>
   <div class="card">
     <div class="card-header">
-      Summary
+      Summary:
     </div>
     <div class="card-body">
-      <h5 class="card-title">Status: Pending</h5>
-      <p class="card-text">Month: May 2018</p>
+      <h5 class="card-title">Status: {{translateStatus(status)}}</h5>
+      <p class="card-text">Period: {{ ts_start | moment }} to {{ ts_end | moment }}</p>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'details-timesheet-summary'
+  name: 'details-timesheet-summary',
+  props: ['status', 'ts_start', 'ts_end'],
+  methods: {
+    translateStatus (status) {
+        let statusMap = {
+          'X': 'pending',
+          'S': 'submitted',
+          'A': 'submitted',
+          'B': 'approved'
+        }
+        let tsStatus = status[0]
+        return statusMap[tsStatus]
+    }
+  }
 }
 </script>
 

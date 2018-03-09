@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DetailsTimeSheetSummary />
+    <DetailsTimeSheetSummary :status="selectedTimesheet.status" :ts_start="selectedTimesheet.ts_start" :ts_end="selectedTimesheet.ts_end" />
     <DetailsTimeSheetForm />
   </div>
 </template>
