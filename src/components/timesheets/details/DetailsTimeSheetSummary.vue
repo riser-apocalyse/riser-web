@@ -10,9 +10,14 @@
   </div>
 </template>
 <script>
+import { moment } from "../../../filters";
+
 export default {
   name: 'details-timesheet-summary',
   props: ['status', 'ts_start', 'ts_end'],
+  filters: {
+    moment
+  },
   methods: {
     translateStatus (status) {
         let statusMap = {
@@ -21,7 +26,7 @@ export default {
           'A': 'submitted',
           'B': 'approved'
         }
-        let tsStatus = status[0]
+        let tsStatus = status ? status[0]: null
         return statusMap[tsStatus]
     }
   }

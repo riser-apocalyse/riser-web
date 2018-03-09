@@ -1,7 +1,7 @@
 <template>
   <div>
     <DetailsTimeSheetSummary :status="selectedTimesheet.status" :ts_start="selectedTimesheet.ts_start" :ts_end="selectedTimesheet.ts_end" />
-    <DetailsTimeSheetForm />
+    <DetailsTimeSheetForm :working_days="selectedTimesheet.working_days" v-on:addRow="addRow" />
   </div>
 </template>
 <script>
@@ -59,22 +59,15 @@ export default {
       },
 
       processSave () {
-        this.saveTimesheet()
+        // this.saveTimesheet()
       },
 
       isEditable (status) {
-        return !(['X', 'S'].includes(status[0]))
+        // return !(['X', 'S'].includes(status[0]))
       },
 
-      addRow () {
-        let workingDays = this.selectedTimesheet['working days'].slice()
-        workingDays.push({
-          'date': '',
-          'start': '',
-          'end': '',
-          'break': ''
-        })
-        this.$set(this.selectedTimesheet, 'working days', workingDays)
+      addRow (payload) {
+        this.$set(this.selectedTimesheet, "working_days", payload);
       }
     },
 
