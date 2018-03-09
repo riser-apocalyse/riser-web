@@ -52,7 +52,7 @@ export default {
       ]),
 
       saveTimesheet () {
-        console.log('THE TIMESHEET ID: ' + this.selectedTimesheet.id)
+        console.log(JSON.stringify(this.selectedTimesheet))
 /*         this.updateTimesheet(this.selectedTimesheet).then(() => {
           console.log('Timesheet updated.')
         }) */
