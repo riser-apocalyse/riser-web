@@ -1,8 +1,7 @@
 <template>
   <div class="card" style="width: 20rem;" v-bind:class="{ 'bg-secondary': isPayed}">
-
     <div class="card-block">
-      <h4 class="card-title">XX days worked</h4>
+      <h4 class="card-title">{{working_days.length}} days worked</h4>
       <p class="card-text">from {{ ts_start | moment }} to {{ ts_end | moment }}</p>
       <router-link class="btn btn-primary" :to="{ name: 'candidate-timesheet',
                        params: { id: id } }">Details</router-link>
@@ -15,7 +14,7 @@
 import { moment } from '../../filters'
 export default {
   name: 'box-timesheet',
-  props: ['status', 'ts_start', 'ts_end', "id"],
+  props: ['working_days', 'status', 'ts_start', 'ts_end', "id"],
   filters: {
     moment
   },
