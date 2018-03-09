@@ -1,7 +1,7 @@
 <template>
   <div>
-    <DetailsTimeSheetSummary />
-    <DetailsTimeSheetForm />
+    <DetailsTimeSheetSummary :status="selectedTimesheet.status" :ts_start="selectedTimesheet.ts_start" :ts_end="selectedTimesheet.ts_end" />
+    <DetailsTimeSheetForm :working_days="selectedTimesheet.working_days" :status="selectedTimesheet.status" v-on:addRow="addRow" v-on:saveTimesheet="saveTimesheet" />
   </div>
 </template>
 <script>
@@ -52,29 +52,14 @@ export default {
       ]),
 
       saveTimesheet () {
-        console.log('THE TIMESHEET ID: ' + this.selectedTimesheet.id)
-        this.updateTimesheet(this.selectedTimesheet).then(() => {
+        console.log(JSON.stringify(this.selectedTimesheet))
+/*         this.updateTimesheet(this.selectedTimesheet).then(() => {
           console.log('Timesheet updated.')
-        })
+        }) */
       },
 
-      processSave () {
-        this.saveTimesheet()
-      },
-
-      isEditable (status) {
-        return !(['X', 'S'].includes(status[0]))
-      },
-
-      addRow () {
-        let workingDays = this.selectedTimesheet['working days'].slice()
-        workingDays.push({
-          'date': '',
-          'start': '',
-          'end': '',
-          'break': ''
-        })
-        this.$set(this.selectedTimesheet, 'working days', workingDays)
+      addRow (payload) {
+        this.$set(this.selectedTimesheet, "working_days", payload);
       }
     },
 
