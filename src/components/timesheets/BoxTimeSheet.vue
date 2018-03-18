@@ -1,10 +1,14 @@
 <template>
-  <div class="card" style="width: 20rem;" v-bind:class="{ 'bg-secondary': isPayed}">
-    <div class="card-block">
-      <h4 class="card-title">{{working_days.length}} days worked</h4>
+  <div
+    class="card"
+    style="width: 20rem;">
+    <div class="card-block" v-bind:class=get_status(status)>
+      <h4 class="card-title">{{ working_days.length }} days worked</h4>
       <p class="card-text">from {{ ts_start | moment }} to {{ ts_end | moment }}</p>
-      <router-link class="btn btn-primary" :to="{ name: 'candidate-timesheet',
-                       params: { id: id } }">Details</router-link>
+      <router-link
+        class="btn btn-primary"
+        :to="{ name: 'candidate-timesheet', params: { id: id } }"
+      >Details</router-link>
     </div>
   </div>
 </template>
@@ -14,22 +18,22 @@
 import { moment } from '../../filters'
 export default {
   name: 'box-timesheet',
-  props: ['working_days', 'status', 'ts_start', 'ts_end', "id"],
+  props: ['working_days', 'status', 'ts_start', 'ts_end', 'id'],
   filters: {
     moment
   },
   methods: {
     isEditable () {
-      return status[0] === 'X';
+      return status[0] === 'X'
     },
     isSubmitted () {
-      return status[0] === 'S';
+      return status[0] === 'S'
     },
     isApproved () {
-      return status[0] === 'A';
+      return status[0] === 'A'
     },
     isPayed () {
-      return status[0] === 'P';
+      return status[0] === 'P'
     },
     translateStatus (status) {
         let statusMap = {
@@ -40,7 +44,19 @@ export default {
         }
         let tsStatus = status[0]
         return statusMap[tsStatus]
+    },
+    get_status (status) {
+       if (status[0] === 'X') {
+         return 'bg-editable'
+       } else {
+         return 'bg-secondary'
+       }
     }
   }
 }
 </script>
+<style>
+  .bg-editable {
+    background-color: #FEFE94;
+  }
+</style>
