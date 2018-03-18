@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { ListTimeSheets } from '../../components/timesheets';
+import { ListTimeSheets } from '../../components/timesheets'
 
 export default {
   name: 'candidate-dashboard',

@@ -4,13 +4,13 @@
       Summary:
     </div>
     <div class="card-body">
-      <h5 class="card-title">Status: {{translateStatus(status)}}</h5>
+      <h5 class="card-title">Status: {{ translateStatus(status) }}</h5>
       <p class="card-text">Period: {{ ts_start | moment }} to {{ ts_end | moment }}</p>
     </div>
   </div>
 </template>
 <script>
-import { moment } from "../../../filters";
+import { moment } from '../../../filters'
 
 export default {
   name: 'details-timesheet-summary',
@@ -26,7 +26,7 @@ export default {
           'A': 'submitted',
           'B': 'approved'
         }
-        let tsStatus = status ? status[0]: null
+        let tsStatus = status ? status[0] : null
         return statusMap[tsStatus]
     }
   }

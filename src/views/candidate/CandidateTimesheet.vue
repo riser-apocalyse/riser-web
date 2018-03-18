@@ -7,7 +7,7 @@
 
 <script>
 
-import { DetailsTimeSheet } from '../../components/timesheets';
+import { DetailsTimeSheet } from '../../components/timesheets'
 
 export default {
   name: 'candidate-timesheet',
