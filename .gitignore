@@ -7,4 +7,5 @@ test/unit/coverage
 test/e2e/reports
 selenium-debug.log
 src/config.js
-src/TODO.md
+src/TODO.mddist
+dist/
