@@ -6,8 +6,10 @@
       :ts_end="selectedTimesheet.ts_end"
     />
     <DetailsTimeSheetForm
-      :working_days="selectedTimesheet.working_days"
+      :workingDays="selectedTimesheet.working_days"
       :status="selectedTimesheet.status"
+      :openDate="openDate"
+      :fromDate="fromDate"
       v-on:addRow="addRow"
       v-on:saveTimesheet="saveTimesheet"
     />
@@ -34,15 +36,19 @@ export default {
   data: () => {
       return {
         selectedTimesheet: {},
-        editing: false
+        editing: false,
+        openDate: null,
+        fromDate: null
       }
   },
   mounted () {
       const id = this.$route.params.id
       if (this.getTimesheetById(id)) {
-         this.editing = true
-         this.selectedTimesheet = Object.assign({}, this.getTimesheetById(id))
-         this.selectedTimesheet.id = id
+        this.editing = true
+        this.selectedTimesheet = Object.assign({}, this.getTimesheetById(id))
+        this.selectedTimesheet.id = id
+        this.openDate = this.selectedTimesheet.ts_start
+        this.fromDate = this.selectedTimesheet.ts_end
       } else { // when reloading page.
         this.loadTimesheets().then(() => {
           let selectedTimesheet = this.getTimesheetById(id)
@@ -50,6 +56,8 @@ export default {
             this.editing = true
             this.selectedTimesheet = Object.assign({}, this.getTimesheetById(id))
             this.selectedTimesheet.id = id
+            this.openDate = this.selectedTimesheet.ts_start
+            this.fromDate = this.selectedTimesheet.ts_end
           }
         })
       }

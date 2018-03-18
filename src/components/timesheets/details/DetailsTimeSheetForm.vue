@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr :key="key" v-for="day, key in working_days">
+          <tr :key="key" v-for="day, key in workingDays">
             <th scope="row">
               <div v-if="day.date === ''">
                 <datepicker
@@ -19,6 +19,8 @@
                   input-class="input"
                   format="MMMM yyyy"
                   v-model="day.date"
+                  :openDate="openDate"
+                  :disabled="getDisabled(openDate, fromDate, workingDays)"
                 ></datepicker>
               </div>
               <div v-else style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis">
@@ -83,11 +85,11 @@ export default {
     moment
   },
   props: [
-    'working_days', 'status'
+    'workingDays', 'status', 'openDate', 'fromDate'
   ],
   methods: {
     addRow () {
-      let workingDays = this.working_days.slice()
+      let workingDays = this.workingDays.slice()
       workingDays.push({
         date: '',
         start: '',
@@ -101,6 +103,13 @@ export default {
     },
     isEditable (status) {
       return status ? !['X'].includes(status[0]) : false
+    },
+    getDisabled (openDate, fromDate, workingDays) {
+      return {
+        to: new Date(openDate),
+        from: new Date(fromDate),
+        dates: workingDays.map(date => new Date(date.date))
+      }
     }
   }
 }
