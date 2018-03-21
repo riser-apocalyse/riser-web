@@ -33,6 +33,7 @@ export const fetchTimesheets = (user, token) => {
           moment(timesheets[index].end).format('YYYY-MM-DD')
         )
       })
+      console.log(timesheets)
       return timesheets
     })
 }

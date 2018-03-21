@@ -11,6 +11,7 @@
       :openDate="openDate"
       :fromDate="fromDate"
       v-on:addRow="addRow"
+      v-on:removeRow="removeRow"
       v-on:saveTimesheet="saveTimesheet"
     />
   </div>
@@ -70,12 +71,16 @@ export default {
 
       saveTimesheet () {
         console.log(JSON.stringify(this.selectedTimesheet))
-/*         this.updateTimesheet(this.selectedTimesheet).then(() => {
+         this.updateTimesheet(this.selectedTimesheet).then(() => {
           console.log('Timesheet updated.')
-        }) */
+        })
       },
 
       addRow (payload) {
+        this.$set(this.selectedTimesheet, 'working_days', payload)
+      },
+
+      removeRow (payload) {
         this.$set(this.selectedTimesheet, 'working_days', payload)
       }
     },

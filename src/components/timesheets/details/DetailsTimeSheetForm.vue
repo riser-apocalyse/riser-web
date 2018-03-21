@@ -60,6 +60,13 @@
                 :disabled="isEditable(status)"
               >
             </td>
+            <td>
+              <p
+                class="btn btn-secondary"
+                v-if="day.editable"
+                @click="removeRow(day)"
+              >x</p>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -94,9 +101,17 @@ export default {
         date: '',
         start: '',
         end: '',
-        break: ''
+        break: '',
+        editable: true
       })
       this.$emit('addRow', workingDays)
+    },
+    removeRow (day) {
+      let workingDays = this.workingDays.slice()
+      let indexOfDayToRemove = workingDays.indexOf(day)
+      workingDays.splice(indexOfDayToRemove, 1)
+      console.log(workingDays)
+      this.$emit('removeRow', workingDays)
     },
     processSave () {
      this.$emit('saveTimesheet', '')
