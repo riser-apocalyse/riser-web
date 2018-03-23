@@ -7,14 +7,14 @@ const SERVER_URL = process.env.SERVER_URL || '82.223.35.243'
 
 export const saveTimesheet = timesheet => {
   timesheet = Object.assign({}, timesheet)
-  timesheet.ts_start = moment(timesheet.ts_start)
-  timesheet.ts_end = moment(timesheet.ts_end)
+  timesheet.ts_start = moment(timesheet.ts_start, 'YYYY-MM-DD')
+  timesheet.ts_end = moment(timesheet.ts_end, 'YYYY-MM-DD')
   let workingDays = timesheet.working_days
   workingDays.forEach(day => {
     if (day.editable) {
       delete day.editable
     }
-    day.date = moment(day.date)
+    day.date = moment(day.date, 'YYYY-MM-DD')
   })
   timesheet.working_days = workingDays
   console.log(timesheet)
