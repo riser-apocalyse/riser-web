@@ -1,5 +1,10 @@
 <template>
   <form class="form" @submit.prevent="processSave">
+    <p type="submit" class="btn btn-primary" @click="changeStatus">Submit</p>
+    <p v-if="!isEditable(status)"
+       type="submit" class="btn btn-secondary"
+       @click="addRow"
+    >New Entry</p>
     <div class="form-group">
       <table class="table">
         <thead>
@@ -71,11 +76,7 @@
         </tbody>
       </table>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button v-if="!isEditable(status)"
-            type="submit" class="btn btn-secondary"
-            @click="addRow"
-    >New Entry</button>
+    <button type="submit" class="btn btn-primary">Save</button>
   </form>
 </template>
 <script>
@@ -98,10 +99,11 @@ export default {
     addRow () {
       let workingDays = this.workingDays.slice()
       workingDays.push({
+        break: '',
         date: '',
         start: '',
         end: '',
-        break: '',
+        state: 'X',
         editable: true
       })
       this.$emit('addRow', workingDays)
@@ -115,6 +117,9 @@ export default {
     },
     processSave () {
      this.$emit('saveTimesheet', '')
+    },
+    changeStatus () {
+      console.log('Change status')
     },
     isEditable (status) {
       return status ? !['X'].includes(status[0]) : false

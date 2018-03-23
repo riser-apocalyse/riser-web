@@ -71,7 +71,7 @@ export default {
 
       saveTimesheet () {
         console.log(JSON.stringify(this.selectedTimesheet))
-         this.updateTimesheet(this.selectedTimesheet).then(() => {
+        this.updateTimesheet(this.selectedTimesheet).then(() => {
           console.log('Timesheet updated.')
         })
       },
@@ -92,4 +92,3 @@ export default {
     }
 }
 </script>
-
