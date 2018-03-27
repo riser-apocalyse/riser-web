@@ -63,81 +63,113 @@
     <div class="container">
       <div class="row main" style="text-align: center; margin: 0 auto;">
         <div class="main-login main-center">
-          <h5>Sign up once and watch any of our free demos.</h5>
+          <h5>Join our network!</h5>
           <form class="" method="post" action="#">
 
             <div class="form-group">
-              <label for="name" class="cols-sm-2 control-label">Your Name</label>
+              <label for="fistName" class="cols-sm-2 control-label label-element">First Name</label>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-text"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                  <!--<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>-->
                   <input
                   name="firstName"
                   class="form-control"
                   v-model="firstName"
                   v-validate="'required|alpha'"
                   :class="{ 'input': true, 'is-danger': errors.has('firstName') }"
-                  type="text" placeholder="First name"
+                  type="text" placeholder="First Name"
                   >
-                  <i v-show="errors.has('firstName')" class="fa fa-warning"></i>
-                  <span v-show="errors.has('firstName')" class="help is-danger">{{ errors.first('firstName') }}</span>
                 </div>
+                <i v-show="errors.has('firstName')" class="fa fa-warning"></i>
+                <span v-show="errors.has('firstName')" class="help is-danger">{{ errors.first('firstName') }}</span>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="email" class="cols-sm-2 control-label">Your Email</label>
+              <label for="lastName" class="cols-sm-2 control-label label-element">Last Name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input
+                    name="lastName"
+                    class="form-control"
+                    v-model="lastName"
+                    v-validate="'required|alpha'"
+                    :class="{ 'input': true, 'is-danger': errors.has('lastName') }"
+                    type="text" placeholder="Last Name"
+                  >
+                </div>
+                <i v-show="errors.has('lastName')" class="fa fa-warning"></i>
+                <span v-show="errors.has('lastName')" class="help is-danger">{{ errors.first('lastName') }}</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="cols-sm-2 control-label label-element">Your Email</label>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-text"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="username" class="cols-sm-2 control-label">Username</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="password" class="cols-sm-2 control-label">Password</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                  <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                  <!--<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>-->
                   <input
-                  v-validate="'required|confirmed:password'"
-                  type="password"
-                  class="form-control"
-                  placeholder="Confirm password"
-                  v-model="passwordConfirmation"
-                  data-as-vv-as="password"
-                  @blur="validatePassword"
+                    name="email"
+                    class="form-control"
+                    v-model="email"
+                    v-validate="'required'"
+                    :class="{ 'input': true, 'is-danger': errors.has('email') }"
+                    type="text" placeholder="Enter your Email"
                   >
                 </div>
+                <i v-show="errors.has('email')" class="fa fa-warning"></i>
+                <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
               </div>
             </div>
 
-            <div class="form-group ">
-              <a href="http://deepak646.blogspot.in" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
+            <div class="form-group">
+              <label for="password" class="cols-sm-2 control-label label-element">Password</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <input
+                    name="password"
+                    class="form-control"
+                    v-model="password"
+                    v-validate="'required'"
+                    type="password"
+                    placeholder="Enter your Password"
+                    data-as-vv-as="password"
+                  >
+                </div>
+                <i v-show="errors.has('password')" class="fa fa-warning"></i>
+                <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
+              </div>
             </div>
+
+            <div class="form-group">
+              <label for="passwordConfirmation" class="cols-sm-2 control-label label-element">Confirm Password</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <input
+                    name="passwordConfirmation"
+                    class="form-control"
+                    v-model="passwordConfirmation"
+                    v-validate="'required|confirmed:password'"
+                    type="password"
+                    placeholder="Confirm password"
+                    data-as-vv-as="password"
+                    @blur="validatePassword"
+                  >
+                </div>
+                <i v-show="errors.has('passwordConfirmation')" class="fa fa-warning"></i>
+                <span v-show="errors.has('passwordConfirmation')" class="help is-danger">{{ errors.first('passwordConfirmation') }}</span>
+              </div>
+            </div>
+
+            <b-button
+              class="btn btn-primary btn-log btn-bock login-button"
+              v-on:click="signUp"
+              variant="success"
+              block
+            >Create Account</b-button>
 
           </form>
         </div>
@@ -149,13 +181,9 @@
 <script>
 
 import axios from 'axios'
-import VeeValidate from 'vee-validate'
 
 export default {
   name: 'Register',
-//  components: {
-//    VeeValidate
-//  },
   data: function () {
     return {
       email: '',
@@ -171,8 +199,7 @@ export default {
         email: this.email,
         password: this.password,
         first: this.firstName,
-        last: this.lastName,
-        user_type: this.userType
+        last: this.lastName
       }
       let url = `http://${SERVER_URL}/user/riseranagraph.fcgi`
       return axios
@@ -222,56 +249,45 @@ export default {
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
   }
+
   .form-control {
     height: auto!important;
     padding: 8px 12px !important;
   }
+
   .input-group {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
   }
-  #button {
-    border: 1px solid #ccc;
-    margin-top: 28px;
-    padding: 6px 12px;
-    color: #666;
-    text-shadow: 0 1px #fff;
-    cursor: pointer;
-    -moz-border-radius: 3px 3px;
-    -webkit-border-radius: 3px 3px;
-    border-radius: 3px 3px;
-    -moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
-    -webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
-    box-shadow: 0 1px #fff inset, 0 1px #ddd;
-    background: #f5f5f5;
-    background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
-    background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
-  }
-  .main-center{
+
+  .main-center {
     margin-top: 30px;
     margin: 0 auto;
     position: relative;
+    width: 450px;
     /*max-width: 400px;*/
     padding: 10px 40px;
-    background:#bebec6; /* important!! */
-    color: #FFF;
+    background:white; /* important!! #bebec6 */
+    color: black;
     text-shadow: none;
     -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
     -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
-
   }
 
-  .login-button{
+  .login-button {
     margin-top: 5px;
+  }
+
+  .label-element {
+    float: left;
+    color: black;
+  }
+
+  .is-danger {
+    color: red;
   }
 
 </style>
