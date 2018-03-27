@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import firebase from 'firebase'
 
 // Containers
 import Candidate from '@/containers/Candidate'
@@ -54,13 +53,13 @@ let router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-
-  if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('candidate/dashboard')
-  else next()
-})
+// router.beforeEach((to, from, next) => {
+//   let currentUser = firebase.auth().currentUser
+//   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+//
+//   if (requiresAuth && !currentUser) next('login')
+//   else if (!requiresAuth && currentUser) next('candidate/dashboard')
+//   else next()
+// })
 
 export default router
