@@ -53,8 +53,7 @@
 
 <script>
 
-import firebase from 'firebase'
-import { loginForm } from "../../config";
+import axios from 'axios'
 
 export default {
   name: 'Login',
@@ -67,15 +66,26 @@ export default {
   methods: {
     signIn: function () {
       console.log(this.username, this.password)
-      firebase.auth().signInWithEmailAndPassword(this.username, this.password).then(
-        (user) => {
-          // select main dashboard depending role!
-          this.$router.replace('candidate/dashboard')
-        },
-        (err) => {
-          console.log('login error', err)
-        }
-      )
+      let userData = {
+        username: this.username,
+        password: this.password
+      }
+      if (this.checkCredentials(userData)) {
+        this.$router.replace('candidate/dashboard')
+      } // else show error message
+    },
+    checkCredentials: function (userData) {
+      let url = `http://${SERVER_URL}/login`
+      return axios
+        .post(url, { user: userData })
+        .then(res => {
+          if (res.verifiedCredentials) {
+            return res
+          }
+        })
+        .catch(res => {
+          console.log('ERROR: ' + res)
+        })
     },
     gotoRegister: function () {
       this.$router.push('register')
