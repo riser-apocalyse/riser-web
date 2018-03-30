@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 import { mapState, mapActions } from 'vuex'
 import BoxTimeSheet from './BoxTimeSheet.vue'
 
@@ -24,17 +23,17 @@ export default {
     BoxTimeSheet
   },
   mounted () {
-      this.loadTimesheets()
-    },
+    this.loadTimesheets()
+  },
   methods: {
     ...mapActions([
-        'loadTimesheets'
-      ])
+      'loadTimesheets'
+    ])
   },
   computed: {
-      ...mapState({
-        'timesheets': state => state.timesheets.timesheets
-      })
+    ...mapState({
+      'timesheets': state => state.timesheets.timesheets
+    })
   }
 }
 </script>

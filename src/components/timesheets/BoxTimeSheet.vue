@@ -14,8 +14,8 @@
 </template>
 
 <script>
-
 import { moment } from '../../filters'
+
 export default {
   name: 'box-timesheet',
   props: ['working_days', 'status', 'ts_start', 'ts_end', 'id'],
