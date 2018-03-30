@@ -107,7 +107,7 @@ export default {
       return axios
         .post(url, { user: userData })
         .then(res => {
-          this.$router.replace('candidate/dashboard')
+          this.$router.replace('main/dashboard')
         })
         .catch(res => {
           console.log('ERROR: ' + res)

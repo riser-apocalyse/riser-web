@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 // Containers
 import Candidate from '@/containers/Candidate'
+import PhysicalUser from '@/containers/Physicaluser'
 
 // Views
 import Login from '@/views/common/Login'
@@ -10,6 +11,7 @@ import PageNotFound from '@/views/common/PageNotFound'
 import Register from '@/views/common/Register'
 import CandidateDashboard from '@/views/candidate/CandidateDashboard'
 import CandidateTimesheet from '@/views/candidate/CandidateTimesheet'
+import PhysicalUserDashboard from '@/views/main/PhysicalUserDashboard'
 
 Vue.use(Router)
 
@@ -28,6 +30,21 @@ let router = new Router({
     {
       path: '/register',
       component: Register
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: PhysicalUser,
+      children: [
+        {
+          path: 'dashboard',
+          name: 'main-dashboard',
+          component: PhysicalUserDashboard
+        }
+      ],
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/candidate',
