@@ -1,71 +1,14 @@
 <template>
   <div class="app cover flex-row align-items-center">
-    <!--<div class="container">-->
-      <!--<b-row class="justify-content-center">-->
-        <!--<b-col md="6" sm="8">-->
-          <!--<b-card no-body class="mx-4">-->
-            <!--<b-card-body class="p-4">-->
-              <!--<h1>Register</h1>-->
-              <!--<p class="text-muted">Create your account</p>-->
-
-              <!--<b-input-group class="mb-3">-->
-                <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="First Name" v-model="firstName">&ndash;&gt;-->
-                <!--<input-->
-                  <!--name="firstName"-->
-                  <!--v-model="firstName"-->
-                  <!--v-validate="'required|alpha'"-->
-                  <!--:class="{ 'input': true, 'is-danger': errors.has('name') }"-->
-                  <!--type="text" placeholder="First name"-->
-                <!--&gt;-->
-                <!--<i v-show="errors.has('firstName')" class="fa fa-warning"></i>-->
-                <!--<span v-show="errors.has('firstName')" class="help is-danger">{{ errors.first('firstName') }}</span>-->
-                <!--<input type="text" class="form-control" placeholder="Last Name" v-model="lastName">-->
-              <!--</b-input-group>-->
-
-              <!--<b-input-group class="mb-3">-->
-                <!--<div class="input-group-prepend">-->
-                  <!--<span class="input-group-text">@</span>-->
-                <!--</div>-->
-                <!--<input type="text" class="form-control" placeholder="Email" v-model="email">-->
-              <!--</b-input-group>-->
-
-              <!--<b-input-group class="mb-3">-->
-                <!--<div class="input-group-prepend">-->
-                  <!--<span class="input-group-text">-->
-                    <!--<i class="icon-lock"></i>-->
-                  <!--</span>-->
-                <!--</div>-->
-                <!--<input-->
-                  <!--v-validate="'required'"-->
-                  <!--type="password"-->
-                  <!--class="form-control"-->
-                  <!--placeholder="Password"-->
-                  <!--v-model="password"-->
-                <!--&gt;-->
-                <!--<input-->
-                  <!--v-validate="'required|confirmed:password'"-->
-                  <!--type="password"-->
-                  <!--class="form-control"-->
-                  <!--placeholder="Confirm password"-->
-                  <!--v-model="passwordConfirmation"-->
-                  <!--data-as-vv-as="password"-->
-                  <!--@blur="validatePassword"-->
-                <!--&gt;-->
-              <!--</b-input-group>-->
-
-              <!--<b-button v-on:click="signUp" variant="success" block>Create Account</b-button>-->
-            <!--</b-card-body>-->
-          <!--</b-card>-->
-        <!--</b-col>-->
-      <!--</b-row>-->
-    <!--</div>-->
-  <!--</div>-->
     <div class="container">
       <div class="row main" style="text-align: center; margin: 0 auto;">
         <div class="main-login main-center">
           <h5>Join our network!</h5>
-          <form class="" method="post" action="#">
-
+          <p v-if="successfullyRegistered">
+            Check your inbox, we've sent you a confirmation email!<br/>
+            Please verify your account before you <router-link to="login">login</router-link>.
+          </p>
+          <form class="form" @submit.prevent="processSave">
             <div class="form-group">
               <label for="fistName" class="cols-sm-2 control-label label-element">First Name</label>
               <div class="cols-sm-10">
@@ -113,7 +56,7 @@
                     name="email"
                     class="form-control"
                     v-model="email"
-                    v-validate="'required'"
+                    v-validate="'required|email'"
                     :class="{ 'input': true, 'is-danger': errors.has('email') }"
                     type="text" placeholder="Enter your Email"
                   >
@@ -144,30 +87,29 @@
             </div>
 
             <div class="form-group">
-              <label for="passwordConfirmation" class="cols-sm-2 control-label label-element">Confirm Password</label>
+              <label for="confirmation" class="cols-sm-2 control-label label-element">Confirm Password</label>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-text"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                   <input
-                    name="passwordConfirmation"
+                    name="confirmation"
                     class="form-control"
-                    v-model="passwordConfirmation"
+                    v-model="confirmation"
                     v-validate="'required|confirmed:password'"
                     type="password"
                     placeholder="Confirm password"
                     data-as-vv-as="password"
-                    @blur="validatePassword"
                   >
                 </div>
-                <i v-show="errors.has('passwordConfirmation')" class="fa fa-warning"></i>
-                <span v-show="errors.has('passwordConfirmation')" class="help is-danger">{{ errors.first('passwordConfirmation') }}</span>
+                <i v-show="errors.has('confirmation')" class="fa fa-warning"></i>
+                <span v-show="errors.has('confirmation')" class="help is-danger">{{ errors.first('confirmation') }}</span>
               </div>
             </div>
 
             <b-button
               class="btn btn-primary btn-log btn-bock login-button"
-              v-on:click="signUp"
               variant="success"
+              type="submit"
               block
             >Create Account</b-button>
 
@@ -182,6 +124,8 @@
 
 import axios from 'axios'
 
+const SERVER_URL = process.env.SERVER_URL || '82.223.35.243'
+
 export default {
   name: 'Register',
   data: function () {
@@ -189,17 +133,19 @@ export default {
       email: '',
       password: '',
       firstName: '',
-      lastName: ''
+      lastName: '',
+      confirmation: '',
+      successfullyRegistered: false
     }
   },
   methods: {
     signUp: function () {
       console.log(this.email, this.password)
       let userData = {
-        email: this.email,
+        alias: this.email,
         password: this.password,
-        first: this.firstName,
-        last: this.lastName
+        first_name: this.firstName,
+        last_name: this.lastName
       }
       let url = `http://${SERVER_URL}/user/riseranagraph.fcgi`
       return axios
@@ -211,14 +157,17 @@ export default {
           console.log('ERROR: ' + res)
         })
     },
-    validatePassword: function () {
-      this.$validator.validateAll()
-        .then(function (response) {
-          //
-        })
-        .catch(function (e) {
-          //
-        })
+    processSave: function () {
+      console.log(this.email, this.password)
+//      this.$validator.validate('confirmation').then(res => {
+      this.$validator.validateAll().then(res => {
+        if (res) {
+          this.signUp()
+          this.successfullyRegistered = true
+        } else {
+          console.log('nooooooooooooooo')
+        }
+      })
     }
   }
 }
