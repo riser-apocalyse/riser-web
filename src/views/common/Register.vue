@@ -6,7 +6,7 @@
           <h5>Join our network!</h5>
           <p v-if="successfullyRegistered">
             Check your inbox, we've sent you a confirmation email!<br/>
-            Please verify your account before you <router-link to="login">login</router-link>.
+            Please verify your account before you <router-link to="login">sign in</router-link>.
           </p>
           <form class="form" @submit.prevent="processSave">
             <div class="form-group">
@@ -159,7 +159,6 @@ export default {
     },
     processSave: function () {
       console.log(this.email, this.password)
-//      this.$validator.validate('confirmation').then(res => {
       this.$validator.validateAll().then(res => {
         if (res) {
           this.signUp()
