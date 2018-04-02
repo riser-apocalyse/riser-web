@@ -104,14 +104,15 @@ export default {
         password: this.password
       }
       let url = `http://${SERVER_URL}/login`
-      return axios
-        .post(url, { user: userData })
-        .then(res => {
-          this.$router.replace('main/dashboard')
-        })
-        .catch(res => {
-          console.log('ERROR: ' + res)
-        })
+//      return axios
+//        .post(url, { user: userData })
+//        .then(res => {
+//          this.$router.replace('main/dashboard')
+//        })
+//        .catch(res => {
+//          console.log('ERROR: ' + res)
+//        })
+      this.$router.replace('main/dashboard')
     }
   }
 }
