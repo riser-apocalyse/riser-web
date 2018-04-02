@@ -7,7 +7,7 @@
     <div class="card-header text-muted">
       {{ userType.toLowerCase() }}
     </div>
-    <router-link to="/candidate/dashboard">
+    <router-link to="/candidate/dashboard" style="text-decoration:none; color:inherit;">
     <div class="card-block">
       <h4 class="card-title">{{ alias }}</h4>
     </div>
