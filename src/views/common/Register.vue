@@ -114,6 +114,12 @@
             >Create Account</b-button>
 
           </form>
+          <b-button
+            class="btn secondary btn-log btn-bock btn-secondary"
+            style="margin-top:2%; max-width:30%;"
+            block
+          ><i class="fa fa-caret-square-o-left"></i>
+            <router-link to="login" style="text-decoration: none; color:inherit;">  Back</router-link></b-button>
         </div>
       </div>
     </div>
