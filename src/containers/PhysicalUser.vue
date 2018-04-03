@@ -16,30 +16,43 @@
 </template>
 
 <script>
-  import nav from '../_nav'
-  import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '../components/'
+//import { mapState } from 'vuex'
+import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '../components/'
 
-  export default {
-    name: 'physical-user',
-    components: {
-      AppHeader,
-      Sidebar,
-      AppAside,
-      AppFooter,
-      Breadcrumb
-    },
-    data () {
-      return {
-        nav: nav.items
-      }
-    },
-    computed: {
-      name () {
-        return this.$route.name
-      },
-      list () {
-        return this.$route.matched
-      }
+export default {
+  name: 'physical-user',
+  components: {
+    AppHeader,
+    Sidebar,
+    AppAside,
+    AppFooter,
+    Breadcrumb
+  },
+  computed: {
+//    ...mapState({
+//      'logicalUsers': state => state.logicalUsers.logicalUsers
+//    }),
+    name: function () { return this.$route.name },
+    list: function () { return this.$route.matched },
+    nav: function () { return this.get_nav() }
+  },
+  methods: {
+    get_nav () {
+//      let children = this.logicalUsers.map(user => { return { name: user.alias } })
+      return [
+        {
+          name: 'Profiles',
+          url: '/main/dashboard/profiles',
+          icon: 'icon-speedometer'
+//          children: children
+        },
+        {
+          name: 'Settings',
+          url: '/main/dashboard/settings',
+          icon: 'icon-speedometer'
+        }
+      ]
     }
   }
+}
 </script>

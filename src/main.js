@@ -5,7 +5,6 @@ import BootstrapVue from 'bootstrap-vue'
 
 import App from './App'
 import router from './router'
-import config from './config'
 import store from './store'
 import VeeValidate from 'vee-validate'
 

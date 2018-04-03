@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 style="margin-bottom:30px;">Your registered users</h1>
-    <button block class="btn btn-success" style="margin-bottom:2%; margin-left:43%; min-width:185px;">
+    <button block class="btn btn-success" style="margin-bottom:2%; margin-left:22%; min-width:185px;">
       <i style="font-size:25px;" class="fa fa-plus-circle"></i>
       <p style="font-size:20px; float:right; margin-left:5px;">Add New User</p>
     </button>
