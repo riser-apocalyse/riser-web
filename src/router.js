@@ -12,6 +12,7 @@ import Register from '@/views/common/Register'
 import CandidateDashboard from '@/views/candidate/CandidateDashboard'
 import CandidateTimesheet from '@/views/candidate/CandidateTimesheet'
 import PhysicalUserDashboard from '@/views/main/PhysicalUserDashboard'
+import PhysicalUserListLogicalProfiles from '@/views/main/PhysicalUserListProfiles'
 
 Vue.use(Router)
 
@@ -39,7 +40,19 @@ let router = new Router({
         {
           path: 'dashboard',
           name: 'main-dashboard',
-          component: PhysicalUserDashboard
+          component: PhysicalUserDashboard,
+          children: [
+            {
+              path: 'profiles',
+              name: 'profiles',
+              component: PhysicalUserListLogicalProfiles
+            },
+            {
+              path: 'settings',
+              name: 'main-settings',
+              component: PhysicalUserListLogicalProfiles // change this for a view to settings later on
+            }
+          ]
         }
       ],
       meta: {

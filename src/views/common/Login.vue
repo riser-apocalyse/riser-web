@@ -112,7 +112,7 @@ export default {
 //        .catch(res => {
 //          console.log('ERROR: ' + res)
 //        })
-      this.$router.replace('main/dashboard')
+      this.$router.push('main/dashboard')
     }
   }
 }
