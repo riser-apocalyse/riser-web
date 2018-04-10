@@ -1,16 +1,14 @@
 <template>
-  <ListLogicalUsers />
+  <PhysicalUserListProfiles />
 </template>
 
 <script>
-import { ListLogicalUsers } from '../../components/logicalUsers'
+import { PhysicalUserListProfiles } from './PhysicalUserListProfiles'
 
 export default {
   name: 'main-dashboard',
   components: {
-    ListLogicalUsers
+    PhysicalUserListProfiles
   }
 }
 </script>
-
-
