@@ -39,3 +39,10 @@ export const deleteTimesheet = ({ commit }, data) => {
   commit('DELETE_TIMESHEET', data)
   removeTimesheet(data)
 }
+
+export default {
+  createTimesheet,
+  updateTimesheet,
+  loadTimesheets,
+  deleteTimesheet
+}
