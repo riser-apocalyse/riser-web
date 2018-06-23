@@ -74,45 +74,28 @@
 </template>
 
 <script>
-
-import axios from 'axios'
-
-const SERVER_URL = process.env.SERVER_URL || '82.223.35.243'
-
 export default {
-  name: 'Login',
-  data: function () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    signIn: function () {
-      this.$validator.validateAll().then(res => {
-        if (res) {
-          this.verifyCredentials()
-        } else {
-          console.log('nooooooooooooooo')
-        }
-      })
-    },
-    verifyCredentials: function () {
-      console.log(this.username, this.password)
-      let userData = {
-        alias: this.email,
-        password: this.password
+    name: 'Login',
+    data: function () {
+      return {
+        email: '',
+        password: '',
+        token: '',
+        errorMessage: ''
       }
-      let url = `http://${SERVER_URL}/login`
-//      return axios
-//        .post(url, { user: userData })
-//        .then(res => {
-//          this.$router.replace('main/dashboard')
-//        })
-//        .catch(res => {
-//          console.log('ERROR: ' + res)
-//        })
-      this.$router.push('main')
+    },
+  methods: {
+    signIn () {
+      this.$store.dispatch('authenticateUser', {
+        username: this.email,
+        password: this.password
+      }).then(() => {
+        console.log('Logged in!')
+        this.$router.push({ name: 'candidate-dashboard' })
+      }).catch((err) => {
+        this.errorMessage = err.message
+        console.log(this.errorMessage)
+      })
     }
   }
 }

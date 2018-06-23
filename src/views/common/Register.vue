@@ -10,44 +10,6 @@
           </p>
           <form class="form" @submit.prevent="processSave">
             <div class="form-group">
-              <label for="fistName" class="cols-sm-2 control-label label-element">First Name</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                  <input
-                  name="firstName"
-                  class="form-control"
-                  v-model="firstName"
-                  v-validate="'required|alpha'"
-                  :class="{ 'input': true, 'is-danger': errors.has('firstName') }"
-                  type="text" placeholder="First Name"
-                  >
-                </div>
-                <i v-show="errors.has('firstName')" class="fa fa-warning"></i>
-                <span v-show="errors.has('firstName')" class="help is-danger">{{ errors.first('firstName') }}</span>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="lastName" class="cols-sm-2 control-label label-element">Last Name</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                  <input
-                    name="lastName"
-                    class="form-control"
-                    v-model="lastName"
-                    v-validate="'required|alpha'"
-                    :class="{ 'input': true, 'is-danger': errors.has('lastName') }"
-                    type="text" placeholder="Last Name"
-                  >
-                </div>
-                <i v-show="errors.has('lastName')" class="fa fa-warning"></i>
-                <span v-show="errors.has('lastName')" class="help is-danger">{{ errors.first('lastName') }}</span>
-              </div>
-            </div>
-
-            <div class="form-group">
               <label for="email" class="cols-sm-2 control-label label-element">Your Email</label>
               <div class="cols-sm-10">
                 <div class="input-group">
@@ -127,10 +89,7 @@
 </template>
 
 <script>
-
-import axios from 'axios'
-
-const SERVER_URL = process.env.SERVER_URL || '82.223.35.243'
+import { CognitoUserPool, CognitoUserAttribute, CognitoUser } from 'amazon-cognito-identity-js'
 
 export default {
   name: 'Register',
@@ -138,8 +97,6 @@ export default {
     return {
       email: '',
       password: '',
-      firstName: '',
-      lastName: '',
       confirmation: '',
       successfullyRegistered: false
     }
@@ -147,21 +104,19 @@ export default {
   methods: {
     signUp: function () {
       console.log(this.email, this.password)
-      let userData = {
-        alias: this.email,
-        password: this.password,
-        first_name: this.firstName,
-        last_name: this.lastName
+      let poolData = {
+        UserPoolId: 'eu-west-1_K7tIw04Ij',
+        ClientId: '11f10uefa40qu2v0j2n42ovee'
       }
-      let url = `http://${SERVER_URL}/user/riseranagraph.fcgi`
-      return axios
-        .post(url, { user: userData })
-        .then(res => {
-          return res.data
-        })
-        .catch(res => {
-          console.log('ERROR: ' + res)
-        })
+      let userPool = new CognitoUserPool(poolData)
+      userPool.signUp(this.email, this.password, [], null, function (err, result) {
+        if (err) {
+          alert(err.message || JSON.stringify(err))
+          return
+        }
+        let cognitoUser = result.user
+        console.log('user name is ' + cognitoUser.getUsername())
+      })
     },
     processSave: function () {
       console.log(this.email, this.password)
@@ -176,6 +131,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>
