@@ -3,7 +3,7 @@ import momentjs from 'moment'
 
 import { moment } from '../../../filters'
 
-const SERVER_URL = process.env.SERVER_URL || '82.223.35.243'
+const SERVER_URL = 'ss0mjd1woa.execute-api.eu-west-1.amazonaws.com/Prod'  // process.env.SERVER_URL||
 
 export const saveTimesheet = timesheet => {
   timesheet = Object.assign({}, timesheet)
@@ -19,11 +19,12 @@ export const saveTimesheet = timesheet => {
   timesheet.working_days = workingDays
   console.log(timesheet)
   let idURL = timesheet.id.split('-')[1]
-  let url = `http://${SERVER_URL}/2/2/${idURL}/riserts.fcgi`
+  let url = `https://${SERVER_URL}/contract/1/timesheets/${idURL}`
   delete timesheet.id
   return axios
-    .post(url, { timesheet: timesheet })
+    .put(url, { timesheet: timesheet })
     .then(res => {
+      console.log(res)
       return res.data
     })
     .catch(res => {
@@ -45,7 +46,7 @@ export const updateTimesheetStatus = timesheet => {
   timesheet.working_days = workingDays
   console.log(timesheet)
   let idURL = timesheet.id.split('-')[1]
-  let url = `http://${SERVER_URL}/2/2/${idURL}/riserts.fcgi`
+  let url = `https://${SERVER_URL}/2/2/${idURL}/riserts.fcgi`
   delete timesheet.id
   return axios
     .post(url, { timesheet: timesheet })
@@ -59,10 +60,10 @@ export const updateTimesheetStatus = timesheet => {
 
 export const fetchTimesheets = (user, token) => {
   return axios
-    .get(`http://${SERVER_URL}/2/2/riserts.fcgi`, { user, token })
+    .get(`https://${SERVER_URL}/contract/1/timesheets`, { user, token })
     .then(res => {
       console.log('fetching timesheets...')
-      let timesheets = res.data.timesheet
+      let timesheets = res.data.timesheets
       Object.keys(timesheets).forEach(index => {
         timesheets[index].ts_start = new Date(
           momentjs(timesheets[index].ts_start).format('YYYY-MM-DD')
@@ -78,7 +79,7 @@ export const fetchTimesheets = (user, token) => {
 export const removeTimesheet = timesheet => {
   console.log(timesheet.id)
   return axios
-    .delete('http://localhost:7000/api/timesheets/' + timesheet.id)
+    .delete('https://localhost:7000/api/timesheets/' + timesheet.id)
     .then(res => {
       return true
     })
