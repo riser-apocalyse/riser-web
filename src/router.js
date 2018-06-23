@@ -21,6 +21,7 @@ Vue.use(Router)
 
 let router = new Router({
   linkActiveClass: 'open active',
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
