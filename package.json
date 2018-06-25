@@ -21,6 +21,7 @@
     "@types/moment": "^2.13.0",
     "@types/uuid": "^3.4.3",
     "amazon-cognito-identity-js": "2.0.6",
+    "amazon-cognito-vuex-module": "^1.1.8",
     "aws-api-gateway-client": "^0.2.13",
     "axios": "^0.18.0",
     "bootstrap": "4.0.0-beta.3",
