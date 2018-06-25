@@ -87,7 +87,7 @@ export default {
   methods: {
     signIn () {
       this.$store.dispatch('authenticateUser', {
-        username: this.email,
+        email: this.email,
         password: this.password
       }).then(() => {
         console.log('Logged in!')
