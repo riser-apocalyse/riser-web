@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 // import { default as vuex } from './vuex'
 // import createLogger from 'vuex/dist/logger'
 
-import cognitoConfig from '../config/cognito'
 import AmazonCognitoVuexModule from 'amazon-cognito-vuex-module'
 
 import { default as timesheets } from './components/timesheets/vuex'

@@ -11,11 +11,6 @@ import PageNotFound from '@/views/common/PageNotFound'
 import Register from '@/views/common/Register'
 import CandidateDashboard from '@/views/candidate/CandidateDashboard'
 import CandidateTimesheet from '@/views/candidate/CandidateTimesheet'
-import PhysicalUserListProfiles from '@/views/main/PhysicalUserListProfiles'
-import PhysicalUserAddProfile from '@/views/main/PhysicalUserAddProfile'
-import DetailsCandidateForm from '@/components/logicalUsers/details/DetailsCandidateForm'
-import DetailsCompanyForm from '@/components/logicalUsers/details/DetailsCompanyForm'
-import DetailsRecruiterForm from '@/components/logicalUsers/details/DetailsRecruiterForm'
 
 Vue.use(Router)
 
@@ -41,40 +36,6 @@ let router = new Router({
       name: 'main',
       component: PhysicalUser,
       redirect: '/main/users',
-      children: [
-        {
-          path: 'users',
-          name: 'main-list-users',
-          component: PhysicalUserListProfiles
-        },
-        {
-          path: 'users/add',
-          name: 'createLogicalUser',
-          component: PhysicalUserAddProfile,
-          children: [
-            {
-              path: 'company',
-              name: 'createCompanyUser',
-              component: DetailsCompanyForm
-            },
-            {
-              path: 'recruiter',
-              name: 'createRecruiterUser',
-              component: DetailsRecruiterForm
-            },
-            {
-              path: 'candidate',
-              name: 'createCandidateUser',
-              component: DetailsCandidateForm
-            }
-          ]
-        },
-        {
-          path: 'settings',
-          name: 'main-settings',
-          component: PhysicalUserListProfiles // change this for a view to settings later on
-        }
-      ],
       meta: {
         requiresAuth: true
       }
