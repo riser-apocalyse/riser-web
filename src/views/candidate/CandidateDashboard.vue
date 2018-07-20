@@ -1,5 +1,8 @@
 <template>
-  <ListTimeSheets />
+  <div>
+    <h1>Summary of activity</h1>
+    <ListTimeSheets />
+  </div>
 </template>
 
 <script>

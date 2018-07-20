@@ -2,32 +2,37 @@ export default {
   items: [
     {
       name: 'Dashboard',
-      url: 'candidate/dashboard',
+      url: 'dashboard',
       icon: 'icon-speedometer'
     },
     {
       name: 'Contracts',
-      url: 'candidate/contracts',
+      url: 'contracts',
+      icon: 'icon-speedometer'
+    },
+    {
+      name: 'Timesheets',
+      url: 'timesheets',
       icon: 'icon-speedometer'
     },
     {
       name: 'Job Search',
-      url: 'candidate/jobs',
+      url: 'jobs',
       icon: 'icon-speedometer'
     },
     {
       name: 'Invoices',
-      url: 'candidate/invoices',
+      url: 'invoices',
       icon: 'icon-speedometer'
     },
     {
       name: 'Notifications',
-      url: 'candidate/notifications',
+      url: 'notifications',
       icon: 'icon-speedometer'
     },
     {
       name: 'Profile Settings',
-      url: 'candidate/profile',
+      url: 'profile',
       icon: 'icon-speedometer'
     }
   ]

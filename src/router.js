@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 // Containers
 import Candidate from '@/containers/Candidate'
-import PhysicalUser from '@/containers/Physicaluser'
 
 // Views
 import Login from '@/views/common/Login'
@@ -11,6 +10,13 @@ import PageNotFound from '@/views/common/PageNotFound'
 import Register from '@/views/common/Register'
 import CandidateDashboard from '@/views/candidate/CandidateDashboard'
 import CandidateTimesheet from '@/views/candidate/CandidateTimesheet'
+import CandidateContracts from '@/views/candidate/CandidateContracts'
+import CandidateContract from '@/views/candidate/CandidateContract'
+import CandidateTimesheets from '@/views/candidate/CandidateTimesheets'
+import CandidateNotifications from '@/views/candidate/CandidateNotifications'
+import CandidateProfile from '@/views/candidate/CandidateProfile'
+import CandidateJobs from '@/views/candidate/CandidateJobs'
+import CandidateInvoices from '@/views/candidate/CandidateInvoices'
 
 Vue.use(Router)
 
@@ -32,15 +38,6 @@ let router = new Router({
       component: Register
     },
     {
-      path: '/main',
-      name: 'main',
-      component: PhysicalUser,
-      redirect: '/main/users',
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
       path: '/candidate',
       name: 'candidate',
       component: Candidate,
@@ -51,9 +48,56 @@ let router = new Router({
           component: CandidateDashboard
         },
         {
+          path: 'contracts',
+          name: 'candidate-contract',
+          component: CandidateContracts
+        },
+        {
+          path: 'contracts/:id',
+          name: 'candidate-contract',
+          component: CandidateContract,
+          children: [
+            {
+              path: 'timesheets',
+              name: 'candidate-timesheets',
+              component: CandidateTimesheets
+            },
+            {
+              path: 'timesheets/:id',
+              name: 'candidate-timesheet',
+              component: CandidateTimesheet
+            }
+          ]
+        },
+        {
+          path: 'timesheets',
+          name: 'candidate-timesheets-latest',
+          component: CandidateTimesheets
+        },
+        {
           path: 'timesheet/:id',
           name: 'candidate-timesheet',
           component: CandidateTimesheet
+        },
+        {
+          path: 'notifications',
+          name: 'candidate-notifications',
+          component: CandidateNotifications
+        },
+        {
+          path: 'profile',
+          name: 'candidate-profile',
+          component: CandidateProfile
+        },
+        {
+          path: 'jobs',
+          name: 'candidate-jobs',
+          component: CandidateJobs
+        },
+        {
+          path: 'invoices',
+          name: 'candidate-invoices',
+          component: CandidateInvoices
         }
       ],
       meta: {

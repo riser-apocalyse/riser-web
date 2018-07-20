@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>list timesheets</h1>
+    <h1>Timesheets</h1>
     <BoxTimeSheet
       v-bind:key="key"
       v-for="timesheet, key in timesheets"
