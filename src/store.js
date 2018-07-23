@@ -6,6 +6,7 @@ import Vuex from 'vuex'
 import AmazonCognitoVuexModule from 'amazon-cognito-vuex-module'
 
 import { default as timesheets } from './components/timesheets/vuex'
+import { default as notifications } from './components/notifications/vuex'
 // import { default as logicalUsers } from './components/logicalUsers/vuex'
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   modules: {
+    notifications: notifications,
     timesheets: timesheets,
     cognito: new AmazonCognitoVuexModule({
       region: 'eu-west-1',

@@ -14,6 +14,7 @@ import CandidateContracts from '@/views/candidate/CandidateContracts'
 import CandidateContract from '@/views/candidate/CandidateContract'
 import CandidateTimesheets from '@/views/candidate/CandidateTimesheets'
 import CandidateNotifications from '@/views/candidate/CandidateNotifications'
+import CandidateNotification from '@/views/candidate/CandidateNotification'
 import CandidateProfile from '@/views/candidate/CandidateProfile'
 import CandidateJobs from '@/views/candidate/CandidateJobs'
 import CandidateInvoices from '@/views/candidate/CandidateInvoices'
@@ -49,7 +50,7 @@ let router = new Router({
         },
         {
           path: 'contracts',
-          name: 'candidate-contract',
+          name: 'candidate-contracts',
           component: CandidateContracts
         },
         {
@@ -59,12 +60,12 @@ let router = new Router({
           children: [
             {
               path: 'timesheets',
-              name: 'candidate-timesheets',
+              name: 'candidate-timesheets-last',
               component: CandidateTimesheets
             },
             {
               path: 'timesheets/:id',
-              name: 'candidate-timesheet',
+              name: 'candidate-timesheet-last',
               component: CandidateTimesheet
             }
           ]
@@ -83,6 +84,11 @@ let router = new Router({
           path: 'notifications',
           name: 'candidate-notifications',
           component: CandidateNotifications
+        },
+        {
+          path: 'notifications/:id',
+          name: 'candidate-notification',
+          component: CandidateNotification
         },
         {
           path: 'profile',
