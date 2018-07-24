@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Timesheets</h1>
+    <div class="card-deck">
     <BoxTimeSheet
       v-bind:key="key"
       v-for="timesheet, key in timesheets"
@@ -10,6 +11,7 @@
       :id="key"
       v-bind:status="timesheet.status"
     />
+  </div>
   </div>
 </template>
 

@@ -84,16 +84,20 @@ export const fetchNotifications = (user, token) => {
   //     return notifications
   //   })
   return {
-    'notifications': [
-      {
+      'asdfasdfasdasf': {
         'subject': 'message alert!',
         'message': 'This is a test notification',
-        'id': 'asdfasdfasdasf',
         'from': 'jomalone',
         'date_sent': momentjs('2018-01-02').format('YYYY-MM-DD'),
         'read': true
-      }
-    ]
+    },
+      '1234sa3': {
+        'subject': 'another message alert!',
+        'message': 'This is another test notification',
+        'from': 'chuckNorris',
+        'date_sent': momentjs('2018-01-03').format('YYYY-MM-DD'),
+        'read': true
+    }
   }
 }
 

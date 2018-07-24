@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card"
+    class="card superbox"
     style="width: 20rem;">
     <div class="card-block" v-bind:class=get_status(status)>
       <h4 class="card-title">{{ working_days.length }} days worked</h4>
@@ -58,5 +58,9 @@ export default {
 <style>
   .bg-editable {
     background-color: #FEFE94;
+  }
+  .superbox {
+    min-width: 20rem;
+    margin-bottom: 15px !important;
   }
 </style>
